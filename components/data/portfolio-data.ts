@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Mohammad Ashikul Islam",
   greeting: "Hi, I am",
-  roles: ["Software Engineer", "Aspiring Learner", "Tech Enthusiast"],
+  roles: ["Software Engineer", "Knowledge Seeker", "Tech Enthusiast"],
   bio: "I'm Mohammad Ashikul Islam, a Software Engineer with a strong track record of developing efficient, high-quality software solutions. With experience across a range of projects, I focus on delivering meaningful results and continuously enhancing my expertise through hands-on work and practical application.",
   email: "mdashikul2222@gmail.com",
   phone: "+8801859140956",
@@ -122,7 +122,7 @@ export const projects = [
     description: "Enterprise-level travel management platform",
     url: "https://welltravel.com",
     features: [
-      "Led development of booking imports, traveler management, and wallet systems",
+      "Contributed to development of booking imports, traveler management, and wallet systems",
       "Implemented rate limiting, CSP, I18N, and enhanced frontend workflows",
       "Developed post-booking modules for comprehensive trip management",
     ],
