@@ -42,7 +42,7 @@ export function ExperienceCard({ title, company, period, responsibilities, color
         <ul className="space-y-2 text-muted-foreground">
           {responsibilities.map((responsibility, index) => (
             <li key={index} className="flex gap-2">
-              <span className="text-primary mt-1">•</span>
+              <span className="text-primary">•</span>
               <span>{responsibility}</span>
             </li>
           ))}
