@@ -86,7 +86,7 @@ export const experiences = [
     company: "WellDev Bangladesh Ltd.",
     period: "July 2025 – Current",
     responsibilities: [
-      "Contributed to the development of a wallet system",
+      "Contributed to the development of wallet systems",
       "Worked on booking operations and background job processing",
       "Built comprehensive admin portal for system management",
     ],
@@ -98,7 +98,7 @@ export const experiences = [
     period: "Aug 2024 – June 2025",
     responsibilities: [
       "Implemented content security policy (CSP) and rate limiting for enhanced security",
-      "Worked on post-booking operations, added internationalization (I18N)",
+      "Worked on post-booking operations and added internationalization (I18N)",
       "Contributed to traveler matching algorithms for optimized user experience",
     ],
     color: "green",
