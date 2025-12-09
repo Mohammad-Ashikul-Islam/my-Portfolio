@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Mohammad Ashikul Islam",
   greeting: "Hi, I am",
-  roles: ["Software Engineer", "Knowledge Seeker", "Tech Enthusiast"],
+  roles: ["Software Engineer", "Logical Thinker", "Tech Enthusiast"],
   bio: "I'm Mohammad Ashikul Islam, a Software Engineer with a strong track record of developing efficient, high-quality software solutions. With experience across a range of projects, I focus on delivering meaningful results and continuously enhancing my expertise through hands-on work and practical application.",
   email: "mdashikul2222@gmail.com",
   phone: "+8801859140956",
@@ -86,8 +86,8 @@ export const experiences = [
     company: "WellDev Bangladesh Ltd.",
     period: "July 2025 – Current",
     responsibilities: [
-      "Developed wallet systems for seamless financial transactions",
-      "Implemented booking operations and background job processing",
+      "Contributed to the development of a wallet system",
+      "Worked on booking operations and background job processing",
       "Built comprehensive admin portal for system management",
     ],
     color: "blue",
@@ -98,8 +98,8 @@ export const experiences = [
     period: "Aug 2024 – June 2025",
     responsibilities: [
       "Implemented content security policy (CSP) and rate limiting for enhanced security",
-      "Developed post-booking operations and internationalization (I18N)",
-      "Created traveler matching algorithms for optimized user experience",
+      "Worked on post-booking operations, added internationalization (I18N)",
+      "Contributed to traveler matching algorithms for optimized user experience",
     ],
     color: "green",
   },
@@ -109,8 +109,8 @@ export const experiences = [
     period: "Feb 2024 – July 2024",
     responsibilities: [
       "Assisted in bug fixes and comprehensive testing procedures",
-      "Contributed to order management system development",
-      "Performed system maintenance and code optimization",
+      "Contributed to code optimization and UI enhancements",
+      "Performed system maintenance and vulnerability assessments",
     ],
     color: "purple",
   },
@@ -122,9 +122,9 @@ export const projects = [
     description: "Enterprise-level travel management platform",
     url: "https://welltravel.com",
     features: [
-      "Contributed to development of booking imports, traveler management, and wallet systems",
+      "Contributed to the development of booking imports, traveler management, and wallet systems",
       "Implemented rate limiting, CSP, I18N, and enhanced frontend workflows",
-      "Developed post-booking modules for comprehensive trip management",
+      "Worked on post-booking modules, PCC integration, and order management",
     ],
     techStack: ["Rails", "React", "PostgreSQL", "Redis", "Sidekiq", "Cancancan"],
     color: "teal",
@@ -136,7 +136,7 @@ export const projects = [
     features: [
       "Built comprehensive admin portal for platform management",
       "Developed integration tests and refactored legacy backend code",
-      "Implemented traveler management, I18N, and reservation system",
+      "Contributed to traveler management, I18N, and reservation system",
     ],
     techStack: ["Rails", "Hotwire", "Stimulus", "PostgreSQL", "Redis", "Sidekiq"],
     color: "orange",
