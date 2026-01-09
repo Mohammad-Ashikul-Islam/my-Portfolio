@@ -1,8 +1,7 @@
 export interface BlogPost {
   title: string;
-  blog_url: string;
-  image_url?: string;
-  created_at: string;
+  url: string;
+  published_at: string;
   description?: string;
 }
 
