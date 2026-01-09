@@ -60,8 +60,14 @@ export async function fetchGitHubActivities(limit: number = 5): Promise<GitHubAc
  * @returns Relative time string (e.g., "2 hours ago")
  */
 export function formatRelativeTime(timestamp: string): string {
+  if (!timestamp) return "some time ago";
   const now = new Date();
   const then = new Date(timestamp);
+  
+  if (isNaN(then.getTime())) {
+    return "recently";
+  }
+
   const diffInSeconds = Math.floor((now.getTime() - then.getTime()) / 1000);
 
   if (diffInSeconds < 60) {
