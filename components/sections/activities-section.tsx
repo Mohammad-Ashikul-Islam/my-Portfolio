@@ -1,8 +1,26 @@
+import { Suspense } from "react";
 import { competitiveProgramming } from "../data/portfolio-data";
 import { SectionTitle } from "../ui/section-title";
 import { PlatformCard } from "../ui/platform-card";
 import { GitHubActivitiesCard } from "../ui/github-activity-card";
+import { BlogPostsCard } from "../ui/blog-posts-card";
 import { fetchGitHubActivities } from "@/lib/github-api";
+import { fetchLatestBlogPosts } from "@/lib/blog-api";
+
+async function BlogPostsWrapper() {
+  const blogPosts = await fetchLatestBlogPosts();
+  
+  if (blogPosts.length === 0) return null;
+
+  return (
+    <div className="space-y-6">
+      <h3 className="text-2xl font-semibold text-center text-muted-foreground">
+        Recent Blog Posts
+      </h3>
+      <BlogPostsCard posts={blogPosts} />
+    </div>
+  );
+}
 
 export async function ActivitiesSection() {
   // Fetch GitHub activities on the server
@@ -68,6 +86,11 @@ export async function ActivitiesSection() {
               </div>
             )}
           </div>
+
+          {/* Recent Blog Posts */}
+          <Suspense fallback={null}>
+            <BlogPostsWrapper />
+          </Suspense>
         </div>
       </div>
     </section>
