@@ -5,6 +5,7 @@ export interface BlogPost {
   date: string;
   description?: string;
   slug: string;
+  tags?: string[];
 }
 
 const BLOG_API_URL = process.env.BLOG_API_URL;
@@ -71,7 +72,8 @@ export async function fetchLatestBlogPosts(): Promise<BlogPost[]> {
             image: imageUrl,
             date: post.date,
             description: post.description,
-            slug: post.slug
+            slug: post.slug,
+            tags: post.tags
           };
         });
 
