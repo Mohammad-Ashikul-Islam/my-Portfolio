@@ -44,8 +44,27 @@ export async function fetchLatestBlogPosts(): Promise<BlogPost[]> {
 
       if (response.ok) {
         const data = await response.json();
-        const posts = Array.isArray(data) ? data : data.posts || [];
+        const rawPosts = Array.isArray(data) ? data : data.posts || [];
         
+        // Normalize URLs and map fields
+        const posts: BlogPost[] = rawPosts.map((post: any) => {
+          let blogUrl = post.blog_url || "#";
+          
+          // Fix localhost URLs if they come from the server
+          if (blogUrl.includes("localhost:3001") && BLOG_API_URL) {
+            const domain = new URL(BLOG_API_URL).origin;
+            blogUrl = blogUrl.replace(/http:\/\/localhost:3001/g, domain);
+          }
+
+          return {
+            title: post.title,
+            blog_url: blogUrl,
+            image_url: post.image_url,
+            created_at: post.created_at,
+            description: post.description,
+          };
+        });
+
         if (posts.length > 0) {
           lastFailureTime = null; // Reset on success
           return posts;
