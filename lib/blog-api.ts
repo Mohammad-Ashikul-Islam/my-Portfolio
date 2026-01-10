@@ -1,9 +1,10 @@
 export interface BlogPost {
   title: string;
-  blog_url: string;
-  image_url?: string;
-  created_at: string;
+  url: string;
+  image?: string;
+  date: string;
   description?: string;
+  slug: string;
 }
 
 const BLOG_API_URL = process.env.BLOG_API_URL;
@@ -44,8 +45,36 @@ export async function fetchLatestBlogPosts(): Promise<BlogPost[]> {
 
       if (response.ok) {
         const data = await response.json();
-        const posts = Array.isArray(data) ? data : data.posts || [];
+        const rawPosts = Array.isArray(data) ? data : data.posts || [];
         
+        // Normalize URLs and map fields
+        const posts: BlogPost[] = rawPosts.map((post: any) => {
+          let blogUrl = post.url || "#";
+          let imageUrl = post.image || "";
+          
+          // Fix localhost URLs if they come from the server by pointing them to the production domain
+          if (blogUrl.includes("localhost:3001") && BLOG_API_URL) {
+            try {
+              const domain = new URL(BLOG_API_URL).origin;
+              blogUrl = blogUrl.replace(/http:\/\/localhost:3001/g, domain);
+              if (imageUrl.includes("localhost:3001")) {
+                imageUrl = imageUrl.replace(/http:\/\/localhost:3001/g, domain);
+              }
+            } catch (e) {
+              console.error("Error normalizing URLs:", e);
+            }
+          }
+
+          return {
+            title: post.title,
+            url: blogUrl,
+            image: imageUrl,
+            date: post.date,
+            description: post.description,
+            slug: post.slug
+          };
+        });
+
         if (posts.length > 0) {
           lastFailureTime = null; // Reset on success
           return posts;

@@ -1,7 +1,5 @@
 import { BlogPost } from "@/lib/blog-api";
-import { formatRelativeTime } from "@/lib/github-api";
-import { BookText, ExternalLink } from "lucide-react";
-import Image from "next/image";
+import { BookText } from "lucide-react";
 
 interface BlogPostsCardProps {
   posts: BlogPost[];
@@ -13,55 +11,51 @@ export function BlogPostsCard({ posts }: BlogPostsCardProps) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="p-6 md:p-8 border-2 rounded-2xl bg-gradient-to-br from-background via-muted/40 to-background border-border/60 shadow-lg hover:shadow-2xl hover:border-primary/50 transition-all duration-500">
-        <div className="space-y-4">
-          {posts.map((post, index) => (
-            <div 
-              key={post.blog_url} 
-              className={`group flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-background/80 to-muted/20 hover:from-primary/5 hover:to-primary/10 hover:scale-[1.02] transition-all duration-300 ${
-                index !== posts.length - 1 ? 'border-b border-border/30' : ''
-              }`}
-            >
-              {post.image_url ? (
-                <div className="flex-shrink-0 w-16 h-16 relative overflow-hidden rounded-lg border border-border/50">
-                  <img
-                    src={post.image_url}
-                    alt={post.title}
-                    className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
+    <div className="max-w-2xl mx-auto space-y-4">
+      {posts.map((post) => (
+        <a 
+          key={post.slug} 
+          href={post.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block p-4 rounded-xl border-2 bg-gradient-to-br from-background via-muted/40 to-background border-border/60 shadow-lg hover:shadow-2xl hover:border-primary/50 hover:scale-[1.01] transition-all duration-500"
+        >
+          <div className="flex items-start gap-4">
+            {/* Image/Icon Thumbnail */}
+            <div className="flex-shrink-0 w-20 h-20 relative overflow-hidden rounded-lg border border-border/50 bg-muted/20">
+              {post.image ? (
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+                />
               ) : (
-                <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 group-hover:from-primary/20 group-hover:to-primary/10 border border-primary/20 group-hover:border-primary/40 transition-all duration-300">
-                  <BookText className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
+                <div className="w-full h-full flex items-center justify-center">
+                  <BookText className="w-8 h-8 text-primary/30 group-hover:scale-110 transition-transform duration-500" />
                 </div>
               )}
-              
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-col gap-1">
-                  <a
-                    href={post.blog_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/link flex items-center gap-2 text-base font-bold text-foreground hover:text-primary transition-colors hover:underline decoration-primary/30 hover:decoration-primary underline-offset-4"
-                  >
-                    <span className="truncate">{post.title}</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-                  </a>
-                  {post.description && (
-                    <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                      {post.description}
-                    </p>
-                  )}
-                  <div className="text-xs text-muted-foreground/70 mt-1 flex items-center gap-2">
-                    {formatRelativeTime(post.created_at)}
-                  </div>
-                </div>
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <h4 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                {post.title}
+              </h4>
+              {post.description && (
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
+                  {post.description}
+                </p>
+              )}
+              <div className="text-[10px] text-muted-foreground/70 mt-2 flex items-center justify-between font-medium">
+                <span>{post.date}</span>
+                <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  Read article →
+                </span>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }
