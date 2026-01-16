@@ -9,7 +9,6 @@ export interface BlogPost {
 }
 
 const BLOG_API_URL = process.env.BLOG_API_URL;
-const BLOG_API_TOKEN = process.env.BLOG_API_TOKEN;
 
 // Simple in-memory circuit breaker
 let lastFailureTime: number | null = null;
@@ -36,7 +35,6 @@ export async function fetchLatestBlogPosts(): Promise<BlogPost[]> {
     try {
       const response = await fetch(BLOG_API_URL, {
         headers: {
-          ...(BLOG_API_TOKEN && { Authorization: `Bearer ${BLOG_API_TOKEN}` }),
           Accept: "application/json",
         },
         next: {
